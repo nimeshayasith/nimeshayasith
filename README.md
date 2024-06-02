@@ -1,52 +1,30 @@
-## Well, hello there 👋
-
-### Who am I?
-
-My name is Nimesha Yasith, and I'm delighted to have the opportunity to introduce myself. I am a Computer Engineering Student with a passion for Cybersecurity. Currently residing in Beruwala, I have One sister and One Brother, Both of them are still learning at School.I am excited about the prospect of Security Engineer, and I look forward to connecting with others who share similar interests or goals. Thank you for taking the time to learn a bit about me.
+# 💫 About Me:
+🔭 I’m currently working on<br>👯 I’m looking to collaborate on<br>🤝 I’m looking for help with<br>🌱 I’m currently learning<br>💬 Ask me about<br>⚡ Fun fact
 
 
-### My stats
+## 🌐 Socials:
+[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/https://discord.gg/UXpCfdb4PS) [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/Nimesha Yasith) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/Nimesha Yasith) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/Nimesha Yasith) [![Pinterest](https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white)](https://pinterest.com/nimeshayasith) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@UCKlC_6m88sM4wse36rB1Zxw) 
 
-<img align="center" src="https://github-readme-stats.vercel.app/api?username=gnomezgrave&show_icons=true&include_all_commits=true&theme=dracula" alt="GitHub stats" />
-<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gnomezgrave&&exclude_repo=gnomezgrave&layout=compact&theme=dracula" alt="languages"/>
+# 💻 Tech Stack:
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white) ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34) ![Neo4J](https://img.shields.io/badge/Neo4j-008CC1?style=for-the-badge&logo=neo4j&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+# 📊 GitHub Stats:
+![](https://github-readme-stats.vercel.app/api?username=nimeshayasith&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true)<br/>
+![](https://github-readme-streak-stats.herokuapp.com/?user=nimeshayasith&theme=tokyonight&hide_border=false)<br/>
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=nimeshayasith&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
 
-### Top Repositories
+## 🏆 GitHub Trophies
+![](https://github-profile-trophy.vercel.app/?username=nimeshayasith&theme=gruvbox&no-frame=false&no-bg=false&margin-w=4)
 
-* 
-* 
-* 
+### ✍️ Random Dev Quote
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
+### 🔝 Top Contributed Repo
+![](https://github-contributor-stats.vercel.app/api?username=nimeshayasith&limit=5&theme=dark&combine_all_yearly_contributions=true)
 
-### Wanna read my articles?
+### 😂 Random Dev Meme
+<img src='https://memer-new.vercel.app/' style="height: 400px;"/>
 
-<!--* <img src="https://praneeth.gnomezgrave.com/assets/img/logo_profile.png" height="20"/>&nbsp; [Portfolio](https://praneeth.gnomezgrave.com/)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/pages/gnomezgrave.png" height="20"/>&nbsp; [Personal Blog](https://gnomezgrave.com/)-->
+---
+[![](https://visitcount.itsvg.in/api?id=nimeshayasith&icon=0&color=0)](https://visitcount.itsvg.in)
 
-### Wanna connect with me?
-
-<!--
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/g2.png" height="20"/>&nbsp; [Tech Reviews](https://www.youtube.com/channel/UCB9dJjRyp6gJXItrLPaZsOA)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/GamezGrave.png" height="20"/>&nbsp; [Gaming](https://www.youtube.com/channel/UCqadMDdlCaxzJN2qpj4UwAQ)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/gnome-with-a-drone.png" height="20"/>&nbsp; [Drone](https://www.youtube.com/channel/UCte9ZuMNwDFLHugTQkU--0g)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/linkedin.png" height="20"/>&nbsp; [LinkedIn](https://praneeth.gnomezgrave.com/assets/img/icons/linkedin.png)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/stackoverflow.png" height="20"/>&nbsp; [Stack Overflow](https://stackoverflow.com/users/1538258/praneeth-peiris)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/github.png" height="20"/>&nbsp; [GitHub](https://github.com/gnomezgrave)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/instagram.png" height="20"/>&nbsp; [Instagram](https://www.instagram.com/praneethpeiris/)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/twitter.png" height="20"/>&nbsp; [Twitter](https://twitter.com/PraneethPeiris)
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/fb.png" height="20"/>&nbsp; [Facebook](https://www.facebook.com/gnomezGrave)-->
-
-
-### Wanna get something done?
-
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/fiverr.png" height="20"/>&nbsp; [fiverr](https://www.fiverr.com/users/gnomezgrave)
-
-
-### Wanna learn from me?
-* <img src="https://praneeth.gnomezgrave.com/assets/img/icons/udemy.png" height="20"/>&nbsp; [Udemy](https://www.udemy.com/user/praneeth-peiris/)
-
-### Wanna sponsor me?
-
-<a href="https://www.buymeacoffee.com/gnomezgrave" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50px" ></a> 
-<a href="https://www.patreon.com/bePatron?u=39152607" target="_blank"><img src="https://cloakandmeeple.files.wordpress.com/2017/06/become_a_patron_button3x.png?w=610" alt="Buy Me A Coffee" height="50px" ></a> ,
-
-can you make my self as this
+<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
