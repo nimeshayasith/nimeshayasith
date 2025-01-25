@@ -1,6 +1,10 @@
 <p align="center" ><img  src = "https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/about_me.gif?raw=true" width = 100px></p>
 <h1 align="center">Hi 👋, I'm Nimesha Yasith</h1>
 <h3 align="center">Passionate Computer Engineering Student | Exploring the Boundless World of Cyber Technology</h3>
+<h5> I am a dedicated and passionate computer engineering undergraduate at the University of Ruhuna with a
+strong enthusiasm for Backend and devops developer. I possess comprehensive skills in web and mobile
+app development, and I thrive on creating innovative solutions that combine technical proficiency with
+creative design. </h5>
 <p align="center"> <img src="https://visitcount.itsvg.in/api?id=nimeshayasith&icon=0&color=0" alt="nimeshayasith" /> </p>
 
 <table align="center">
