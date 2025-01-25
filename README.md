@@ -52,9 +52,72 @@
 </table>
 
 ---
+---
 
+### 💻 Projects:
+#### 1. Stress Management System - Calm Mind (Web and Mobile)
+- **Tools:** Node.js, React, Flutter, Render, Jira, Figma  
+- CRUD operations with time management tools, admin panel for backend management.  
+- Integrated same backend for both web and mobile applications.  
+- [GitHub (Web)](https://github.com/nimeshayasith/StressfreeZone_Web.git) | [GitHub (Mobile)](https://github.com/nimeshayasith/StressFreeZone_mobile) | [Figma](https://www.figma.com/design/sFPOhTnwgbLJ8LL4O13wAo/Figma-design?m=auto&t=AZPlJ5lml3tD6DfL-1) | [Jira](https://cyber-junction.atlassian.net/jira/software/projects/SFZ/summary)
+
+#### 2. AntiSleep Alarm and Smart Glasses for Blind People
+- **Tools:** Arduino Nano Board, IR Sensor, Buzzer, Ultrasonic Sensor  
+- Developed a device that detects when the driver falls asleep and emits an alert.  
+- [GitHub](https://github.com/nimeshayasith/Eminance-4.0_competition.git)
+
+#### 3. Personal Finance Tracker
+- **Tools:** CSS, HTML, GitHub, JavaScript  
+- Created a web app for tracking income, expenses, and managing budgets.  
+- [GitHub](https://github.com/nimeshayasith/trackme.git)
+
+#### 4. Student Registration System
+- **Tools:** C#, Windows Forms, MVVM Pattern, SQLite  
+- Desktop application for student management with CRUD operations.  
+- [GitHub](https://github.com/nimeshayasith/Student_Registration_System-WPF-4624-4608-.git)
+
+#### 5. IPL Win Prediction (Machine Learning)
+- **Tools:** Python, Scikit-Learn, Logistic Regression, Random Forest  
+- Predicted IPL match outcomes with over 80% accuracy.  
+- [GitHub](https://github.com/Parakkrama24/machinelaerningProject.git)
+
+#### 6. Online Quiz App
+- **Tools:** Java, Spring Boot, MySQL, React  
+- Online quiz platform with dynamic quiz creation and real-time tracking.  
+- [GitHub](https://github.com/nimeshayasith/Online_quiz_App.git)
+
+---
+
+### 💪 Strengths:
+- **Positive Thinking**: Maintains a positive mindset and handles difficult situations effectively.  
+- **Team Player**: Successfully leads projects and competition teams to completion.  
+- **Problem Solver**: Enjoys working on solutions to new problems using emerging technologies.  
+- **Creativity**: Passionate about creating innovative and creative solutions.
+
+---
+
+### 🤝 Volunteer Experience:
+#### 1. Organizing Committee Member - Xbotics Competition
+- **Duration:** Aug 2023 - Oct 2023  
+- Coordinated with school category team and managed event arrangements.  
+- Enhanced teamwork and event organization skills.  
+- [Learn More](https://www.facebook.com/profile.php?id=100009492125998&mibextid=ZbWKwL)
+
+#### 2. Technical Team Member - Axiom Coding Challenge Competition
+- **Duration:** Sep 2024 - Oct 2024  
+- Designed and reviewed technical challenges for the competition.  
+- Provided technical support during live event sessions.  
+- [GitHub](https://github.com/nimeshayasith/Axiom-2.0.git)
+
+#### 3. Volunteer Member - Mehewara
+- **Duration:** Mar 2023 - Mar 2024  
+- Assisted with the University program and helped O/L students in the district.  
+- [Instagram](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDEyMTAzOTQwMjEzNDAz?story_media_id=3389458921856020810_44439011523&igsh=eW0yenc5cmZ5enF2)
+
+---
 
 ### ✍️ Quotes
+
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
 
