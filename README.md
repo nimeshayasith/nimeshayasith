@@ -12,7 +12,7 @@
 - 🧑‍🎓 I’m an Undergraduate at **University Of Ruhuna**
 
 - 💬 Ask me about **Java**
-
+-  📄 View my [Resume (PDF)](https://github.com/nimeshayasith/My-CV.pdf) 
 - 📫 How to reach me **nimeshayasith@gmail.com**
   
 - ⚡ Fun fact **Call me as chuttimalli**
