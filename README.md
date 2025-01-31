@@ -15,7 +15,7 @@ creative design. </h5>
 - 🧑‍🎓 I’m an Undergraduate at **University Of Ruhuna**
 
 - 💬 **Ask me about Java**
-- 📄 **View my [Resume (PDF)](https://github.com/nimeshayasith/nimeshayasith/blob/main/Nimesha Yasith SE Internship.pdf)**
+- 📄 **View my [Resume (PDF)](https://github.com/nimeshayasith/nimeshayasith/blob/main/Nimesha_Yasith_SE_Internship.pdf)**
 - 📫 **Reach me at**: nimeshayasith@gmail.com
 
 - ⚡ Fun fact **Call me as chuttimalli**
