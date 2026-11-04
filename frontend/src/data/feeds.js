@@ -1,4 +1,5 @@
 import snapshot from './feeds.snapshot.json';
+import { PROJECTS } from './projects';
 
 /**
  * Normalised article / video lists. The shapes the UI uses:
@@ -102,4 +103,18 @@ export const PROJECT_VIDEO_MATCH = {
 export const videoForProject = (projectId, videos) => {
   const re = PROJECT_VIDEO_MATCH[projectId];
   return re ? videos.find((v) => re.test(v.title)) : undefined;
+};
+
+/** Projects that have a demo video, newest project first: [{ project, video }]. One entry per video. */
+export const projectDemos = (videos) => {
+  const seen = new Set();
+  const out = [];
+  for (const project of PROJECTS) {
+    const video = videoForProject(project._id, videos);
+    if (video && !seen.has(video.id)) {
+      seen.add(video.id);
+      out.push({ project, video });
+    }
+  }
+  return out;
 };

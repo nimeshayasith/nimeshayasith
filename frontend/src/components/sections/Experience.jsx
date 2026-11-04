@@ -1,350 +1,147 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { GraduationCap, Star } from 'lucide-react';
-import { EDUCATION as EDUCATION_DATA, TIMELINE_EXPERIENCE } from '../../data/experience';
+import TechBadge from '../ui/TechBadge';
+import { sfx } from '../../lib/sfx';
+import { EXPERIENCE, EDUCATION, VOLUNTEERING } from '../../data/experience';
 
-/* ─────────────────────────────────────────
-   Horizontal Timeline Grid (Classic Portfolio Pro exact style)
-   Row 1  = items 0-3  (border-top + border-right pattern, text ABOVE line)
-   Row 2  = items 4-7  (border-bottom pattern, text BELOW line)
-───────────────────────────────────────── */
-function TimelineGrid({ items, color }) {
-  const row1 = items.slice(0, 4);
-  const row2 = items.slice(4, 8);
+/**
+ * Experience, told as a git history: each role / degree / volunteering stint is a commit on a branch.
+ * The hash is only a short stable fingerprint of the entry's id (decoration, not real git data).
+ */
+const fingerprint = (s) => {
+  let h = 2166136261;
+  for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
+  return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7);
+};
 
-  /* circle: border colour = accent on lime, else gray */
-  const circleBorder = `2px dotted ${color === '#cefe08' ? color : '#555'}`;
+const BRANCHES = [
+  {
+    key: 'main',
+    hint: 'work',
+    items: EXPERIENCE.map((e) => ({
+      id: e._id, title: e.role, where: `${e.company} · ${e.location}`, when: e.period,
+      text: e.description, lines: e.achievements, tags: e.techStack, image: e.image,
+    })),
+  },
+  {
+    key: 'education',
+    hint: 'study',
+    items: EDUCATION.map((e) => ({ id: e._id, title: e.title, where: e.org, when: e.year, image: e.image })),
+  },
+  {
+    key: 'community',
+    hint: 'volunteering',
+    items: VOLUNTEERING.map((v) => ({ id: v._id, title: v.role, where: v.org, when: v.period, text: v.detail, url: v.url, image: v.image })),
+  },
+];
 
+function Commit({ item, head, branch, index }) {
   return (
-    <div style={{ position: 'relative', width: '100%', overflowX: 'auto' }}>
-      <style>{`
-        .cp-tl-cell { position: relative; flex: 1; min-width: 160px; }
+    <motion.article
+      className={`commit ${head ? 'is-head' : ''}`}
+      initial={{ opacity: 0, x: -14 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, delay: 0.08 * index }}
+    >
+      <div className="glass p-6">
+        <p className="commit-meta mb-3">
+          <span>commit <b>{fingerprint(item.id)}</b></span>
+          {head && <span className="commit-head">HEAD → {branch}</span>}
+          <span>{item.when}</span>
+        </p>
 
-        /* ── Row-1 borders (top + selective right) ── */
-        .cp-tl-cell.r1-c1 { border-top: 2px dotted var(--border-strong); border-right: 2px dotted var(--border-strong); }
-        .cp-tl-cell.r1-c2 { border-bottom: 2px dotted var(--border-strong); }
-        .cp-tl-cell.r1-c3 { border-bottom: 2px dotted var(--border-strong); border-right: 2px dotted var(--border-strong); }
-        .cp-tl-cell.r1-c4 { border-bottom: 2px dotted var(--border-strong); }
-
-        /* ── Row-2 borders (bottom + selective right) ── */
-        .cp-tl-cell.r2-c1 { border-bottom: 2px dotted var(--border-strong); }
-        .cp-tl-cell.r2-c2 { border-bottom: 2px dotted var(--border-strong); }
-        .cp-tl-cell.r2-c3 { border-bottom: 2px dotted var(--border-strong); border-right: 2px dotted var(--border-strong); }
-        .cp-tl-cell.r2-c4 { border-top: 2px dotted var(--border-strong); }
-
-        /* ── Corner circle dot (Premium CSS Pulse) ── */
-        .cp-tl-cell::before {
-          content: '';
-          position: absolute;
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background: var(--accent-ink);
-          z-index: 2;
-          box-shadow: 0 0 0 0 rgba(206, 254, 8, 0.7);
-          animation: tlPulse 2s infinite;
-        }
-
-        /* Create a subtle ring around the pulsing dot */
-        .cp-tl-cell::after {
-          content: '';
-          position: absolute;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          border: 2px solid rgba(206, 254, 8, 0.3);
-          z-index: 1;
-        }
-
-        @keyframes tlPulse {
-          0% { box-shadow: 0 0 0 0 rgba(206, 254, 8, 0.7); }
-          70% { box-shadow: 0 0 0 12px rgba(206, 254, 8, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(206, 254, 8, 0); }
-        }
-
-        /* Positioning the dot */
-        .cp-tl-cell.r1-c1::before { top: -8px; left: 5%; }
-        .cp-tl-cell.r1-c2::before { bottom: -8px; left: -8px; }
-        .cp-tl-cell.r1-c3::before { bottom: -8px; left: -2px; }
-        .cp-tl-cell.r1-c4::before { bottom: -8px; left: -8px; }
-        .cp-tl-cell.r2-c1::before { bottom: -8px; left: 5%; }
-        .cp-tl-cell.r2-c2::before { bottom: -8px; left: -8px; }
-        .cp-tl-cell.r2-c3::before { bottom: -8px; left: -2px; }
-        .cp-tl-cell.r2-c4::before { top: -8px; left: -8px; }
-
-        /* Positioning the outer ring (shifted by -5px relative to the 14px dot to center it: (24-14)/2 = 5 ) */
-        .cp-tl-cell.r1-c1::after { top: -13px; left: calc(5% - 5px); }
-        .cp-tl-cell.r1-c2::after { bottom: -13px; left: -13px; }
-        .cp-tl-cell.r1-c3::after { bottom: -13px; left: -7px; }
-        .cp-tl-cell.r1-c4::after { bottom: -13px; left: -13px; }
-        .cp-tl-cell.r2-c1::after { bottom: -13px; left: calc(5% - 5px); }
-        .cp-tl-cell.r2-c2::after { bottom: -13px; left: -13px; }
-        .cp-tl-cell.r2-c3::after { bottom: -13px; left: -7px; }
-        .cp-tl-cell.r2-c4::after { top: -13px; left: -13px; }
-
-        @media (max-width: 640px) {
-          .cp-tl-row { flex-wrap: wrap !important; }
-          .cp-tl-cell { min-width: 45% !important; border: none !important; }
-          .cp-tl-cell::before { display: none; }
-        }
-      `}</style>
-
-      {/* ── Row 1 — text ABOVE the dashed line ── */}
-      <div className="cp-tl-row" style={{ display: 'flex', gap: 0 }}>
-        {row1.map((item, i) => {
-          const cls = `cp-tl-cell r1-c${i + 1}`;
-          return (
-            <motion.div
-              key={item._id}
-              className={cls}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.45, delay: i * 0.07 }}
-              style={{ padding: '0 20px 24px 20px' }}
-            >
-              <p style={{
-                fontSize: 13, color: 'var(--text-secondary)',
-                fontFamily: 'Inter, sans-serif',
-                marginBottom: 6,
-              }}>
-                {item.year}
-              </p>
-              <h3 style={{
-                fontFamily: 'Unbounded, sans-serif',
-                fontSize: 15, fontWeight: 700,
-                color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3,
-              }}>
-                {item.title}
-              </h3>
-              <p style={{
-                fontSize: 13, color: 'var(--text-secondary)',
-                fontFamily: 'Inter, sans-serif',
-              }}>
-                {item.org}
-              </p>
-
-              {item.modules && (
-                <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {item.modules.map((mod, idx) => (
-                    <div key={idx} style={{ position: 'relative', paddingLeft: 14 }}>
-                      {/* Custom bullet */}
-                      <div style={{
-                        position: 'absolute', left: 0, top: 6, width: 6, height: 6,
-                        borderRadius: '50%', background: 'var(--accent-ink)'
-                      }} />
-                      <div style={{
-                        fontSize: 11, color: 'var(--text-secondary)', fontFamily: 'Inter, sans-serif', marginBottom: 2
-                      }}>
-                        {mod.year}
-                      </div>
-                      <div style={{
-                        fontSize: 13, color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'Inter, sans-serif',
-                        marginBottom: 2
-                      }}>
-                        {mod.name}
-                      </div>
-                      <div style={{
-                        fontSize: 12, color: 'var(--text-muted)', fontFamily: 'Inter, sans-serif', lineHeight: 1.4
-                      }}>
-                        {mod.desc}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* ── Row 2 — text BELOW the dashed line ── */}
-      {row2.length > 0 && (
-        <div className="cp-tl-row" style={{ display: 'flex', gap: 0 }}>
-          {row2.map((item, i) => {
-            const cls = `cp-tl-cell r2-c${i + 1}`;
-            return (
-              <motion.div
-                key={item._id}
-                className={cls}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.45, delay: i * 0.07 + 0.2 }}
-                style={{ padding: '24px 20px 0 20px' }}
-              >
-                <p style={{
-                  fontSize: 13, color: 'var(--text-secondary)',
-                  fontFamily: 'Inter, sans-serif',
-                  marginBottom: 6,
-                }}>
-                  {item.year}
-                </p>
-                <h3 style={{
-                  fontFamily: 'Unbounded, sans-serif',
-                  fontSize: 15, fontWeight: 700,
-                  color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3,
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  fontSize: 13, color: 'var(--text-secondary)',
-                  fontFamily: 'Inter, sans-serif',
-                }}>
-                  {item.org}
-                </p>
-
-                {item.modules && (
-                  <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    {item.modules.map((mod, idx) => (
-                      <div key={idx} style={{ position: 'relative', paddingLeft: 14 }}>
-                        <div style={{
-                          position: 'absolute', left: 0, top: 6, width: 6, height: 6,
-                          borderRadius: '50%', background: 'var(--accent-ink)'
-                        }} />
-                        <div style={{
-                          fontSize: 11, color: 'var(--text-secondary)', fontFamily: 'Inter, sans-serif', marginBottom: 2
-                        }}>
-                          {mod.year}
-                        </div>
-                        <div style={{
-                          fontSize: 13, color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'Inter, sans-serif',
-                          marginBottom: 2
-                        }}>
-                          {mod.name}
-                        </div>
-                        <div style={{
-                          fontSize: 12, color: 'var(--text-muted)', fontFamily: 'Inter, sans-serif', lineHeight: 1.4
-                        }}>
-                          {mod.desc}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </motion.div>
-            );
-          })}
+        <div className="flex items-start gap-4">
+          {item.image && (
+            <img src={item.image} alt="" loading="lazy" className="w-12 h-12 rounded-lg object-contain flex-shrink-0" style={{ background: '#fff', padding: 4 }} />
+          )}
+          <div style={{ minWidth: 0 }}>
+            <h3 className="t-h3">{item.title}</h3>
+            <p className="t-body mt-1" style={{ color: 'var(--accent-ink)' }}>{item.where}</p>
+          </div>
         </div>
-      )}
-    </div>
+
+        {item.text && <p className="t-body mt-4">{item.text}</p>}
+
+        {item.lines?.length > 0 && (
+          <div className="mt-4" aria-label="What I did">
+            {item.lines.map((line) => (
+              <p key={line} className="diff-line t-body" style={{ color: 'var(--text-primary)' }}>
+                <span className="diff-plus" aria-hidden="true">+</span>
+                <span>{line}</span>
+              </p>
+            ))}
+          </div>
+        )}
+
+        {item.tags?.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-4">
+            {item.tags.map((t) => <TechBadge key={t} tech={t} />)}
+          </div>
+        )}
+
+        {item.url && (
+          <a href={item.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 t-small mt-4 hover:text-accent-500 transition-colors">
+            <ExternalLink className="w-3.5 h-3.5" /> GitHub
+          </a>
+        )}
+      </div>
+    </motion.article>
   );
 }
 
-/* ─────────────────────────────────────────
-   Main Component
-───────────────────────────────────────── */
 export default function Experience() {
-  const [activeTab, setActiveTab]     = useState('experience');
-  const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
-
-  const displayedData = activeTab === 'education' ? EDUCATION_DATA : TIMELINE_EXPERIENCE;
-
-  /* Tab config: btn1 = lime (active selected), btn2 = gray */
-  const tabs = [
-    { key: 'education',  label: 'My Education',  Icon: GraduationCap },
-    { key: 'experience', label: 'My Experience',  Icon: Star          },
-  ];
+  const [branch, setBranch] = useState('main');
+  const active = BRANCHES.find((b) => b.key === branch);
 
   return (
-    <section id="experience" ref={ref} className="section-padding">
+    <section id="experience" className="section-padding">
       <div className="section-divider mb-24 -mt-12" />
 
-      {/* ── Section Header ── */}
-      <SectionHeading index="04" label="Journey" title={<>My <span className="gradient-text">Experience</span></>}
-        lead={<>Two DevOps and engineering internships, a Computer Engineering degree, and a few years of building and breaking things on purpose.</>}
+      <SectionHeading
+        index="04"
+        label="Journey"
+        title={<>My <span className="gradient-text">Experience</span></>}
+        lead="Two DevOps and engineering internships, a Computer Engineering degree, and community work. Switch branches to read each one."
       />
 
-      {/* ── Classic Portfolio Pro Tab Buttons ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.15 }}
-        style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 56 }}
-      >
-        {tabs.map(({ key, label, Icon }, idx) => {
-          const isActive = activeTab === key;
-          /* btn1 (education) = lime when active; btn2 (experience) = gray when active */
-          const activeBg    = idx === 0 ? 'var(--accent)' : 'var(--text-secondary)';
-          const activeColor = '#111';
-          const inactiveBg  = 'var(--bg-inverse)';
-          return (
-            <button
-              key={key}
-              onClick={() => setActiveTab(key)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 0,
-                background: isActive ? activeBg : inactiveBg,
-                color: isActive ? activeColor : '#fff',
-                padding: '6px 20px 6px 8px',
-                borderRadius: 30,
-                border: `2px solid ${isActive ? activeBg : 'rgba(255,255,255,0.12)'}`,
-                fontWeight: 700,
-                fontSize: 15,
-                fontFamily: 'Inter, sans-serif',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={e => {
-                if (!isActive) {
-                  e.currentTarget.style.background = idx === 0 ? 'var(--accent)' : 'var(--text-secondary)';
-                  e.currentTarget.style.color = '#111';
-                  e.currentTarget.style.borderColor = idx === 0 ? 'var(--accent)' : 'var(--text-secondary)';
-                }
-              }}
-              onMouseLeave={e => {
-                if (!isActive) {
-                  e.currentTarget.style.background = 'var(--bg-inverse)';
-                  e.currentTarget.style.color = '#fff';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
-                }
-              }}
-            >
-              {/* Circle icon — exact Classic Portfolio Pro button style */}
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 34,
-                height: 34,
-                borderRadius: '50%',
-                background: 'var(--bg-inverse)',
-                marginRight: 12,
-                flexShrink: 0,
-              }}>
-                <Icon style={{
-                  width: 15,
-                  height: 15,
-                  color: idx === 0 ? 'var(--accent)' : 'var(--text-secondary)',
-                }} />
-              </span>
-              {label}
-            </button>
-          );
-        })}
-      </motion.div>
+      <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-10 lg:gap-14 items-start">
+        <div className="lg:sticky lg:top-28">
+          <p className="t-label mb-3">$ git checkout</p>
+          <div className="branch-bar lg:flex lg:flex-col lg:w-full" role="group" aria-label="Choose a branch">
+            {BRANCHES.map((b) => (
+              <button
+                key={b.key}
+                type="button"
+                className="branch-btn lg:w-full lg:justify-between"
+                aria-pressed={branch === b.key}
+                onClick={() => { sfx.click(); setBranch(b.key); }}
+              >
+                <span>{b.key}</span>
+                <small>{b.items.length}<span className="hidden lg:inline"> · {b.hint}</span></small>
+              </button>
+            ))}
+          </div>
+          <p className="t-small mt-5">
+            {active.items.length} commits on <span style={{ fontFamily: 'ui-monospace, Consolas, monospace', color: 'var(--text-primary)' }}>{active.key}</span>
+          </p>
+          <Link to="/experience" className="btn-outline mt-5">
+            Full details <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
 
-      {/* ── Horizontal Timeline Grid ── */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeTab}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="max-w-5xl mx-auto"
-        >
-          <TimelineGrid
-            items={displayedData}
-            color={activeTab === 'education' ? '#cefe08' : '#888'}
-          />
-        </motion.div>
-      </AnimatePresence>
+        <AnimatePresence mode="wait">
+          <motion.div key={active.key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            <div className="gitlog">
+              {active.items.map((item, i) => (
+                <Commit key={item.id} item={item} head={i === 0} branch={active.key} index={i} />
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </section>
   );
 }

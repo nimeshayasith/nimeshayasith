@@ -27,7 +27,7 @@ flowchart LR
 |---|---|---|
 | Profile, skills, projects, experience, education, AWS certification | Bundled at build (`frontend/src/data/*.js`) | Instant first paint, zero API calls, works if every server is down |
 | Articles (Medium, DEV, AWS Builder) | Bundled snapshot written by `scripts/fetch-feeds.mjs` at every build, then refreshed live (Medium via backend, DEV direct) | Instant paint, and new posts appear within a day even with no visitor-side refresh |
-| YouTube videos | Same snapshot, refreshed live through the `/yt/*` rewrite | Channel feeds have no CORS headers, so the rewrite keeps the browser same-origin |
+| YouTube videos | Snapshot written at build through the YouTube Data API v3 (key kept in an Amplify environment variable), falling back to the RSS feed, then to the previous snapshot. In the browser, refreshed live through the `/yt/*` rewrite | The RSS feed is unofficial and goes down; channel feeds have no CORS headers, so the rewrite keeps the browser same-origin |
 | Library (slides, PDFs) | Backend `/api/library` | Large files and metadata live in Cloudinary/Mongo |
 | Extra credentials | Backend `/api/certifications`, merged into the bundled list | Add a badge without a code change |
 | Gallery photos | Bundled + `src/media/gallery`, merged with backend `/api/gallery` | Photos work offline; add more live without a redeploy |

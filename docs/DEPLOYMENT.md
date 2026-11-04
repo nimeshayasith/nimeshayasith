@@ -57,6 +57,15 @@ articles and videos are bundled. Change or disable it in `terraform.tfvars` (`re
 To see what the next build would pick up, run `npm run feeds -- --dry` in `frontend/`.
 AWS Builder Center articles: paste each link into `awsBuilder.articleUrls` in `frontend/src/data/feeds.config.js`.
 
+**YouTube (recommended): `YOUTUBE_API_KEY`.** YouTube's RSS feed is unofficial and goes down for hours at a time. With an
+API key the build reads your channel through the official YouTube Data API v3 and falls back to RSS, then to the last
+good snapshot, if anything fails.
+1. Google Cloud Console: create a project, enable **YouTube Data API v3**, then **Credentials → Create credentials →
+   Public data → API key**. Edit the key: Application restrictions **None** (Amplify build servers have no fixed IP),
+   API restrictions **YouTube Data API v3**.
+2. Amplify → **Hosting → Environment variables → Manage variables**: add `YOUTUBE_API_KEY`. Never prefix it with `VITE_`
+   (that would ship it to every visitor) and never commit it. The build log shows `youtube via Data API v3` when it works.
+
 ## Troubleshooting
 
 | Symptom | Cause / fix |

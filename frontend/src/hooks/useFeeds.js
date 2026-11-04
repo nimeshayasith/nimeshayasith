@@ -35,6 +35,17 @@ export function useArticles() {
   return { articles, status };
 }
 
+// One live request for the whole session, shared by every component that shows videos.
+let liveVideosRequest;
+const loadLiveVideos = () => {
+  liveVideosRequest ??= youtubeApi.getFeed(FEEDS.youtube.channelId).then((xml) => {
+    const live = fromYoutubeAtom(xml);
+    if (!live.length) throw new Error('empty');
+    return live;
+  });
+  return liveVideosRequest;
+};
+
 /** YouTube videos: bundled snapshot first, then the channel's live Atom feed. */
 export function useVideos() {
   const [videos, setVideos] = useState(SNAPSHOT_VIDEOS);
@@ -42,12 +53,9 @@ export function useVideos() {
 
   useEffect(() => {
     let cancelled = false;
-    youtubeApi
-      .getFeed(FEEDS.youtube.channelId)
-      .then((xml) => {
+    loadLiveVideos()
+      .then((live) => {
         if (cancelled) return;
-        const live = fromYoutubeAtom(xml);
-        if (!live.length) throw new Error('empty');
         setVideos((cur) => mergeVideos(cur, live));
         setStatus('live');
       })

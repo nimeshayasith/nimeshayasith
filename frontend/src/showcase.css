@@ -1,0 +1,140 @@
+/* ════════════════════════════════════════════════════════════════
+   Laptop demo reel (ui/LaptopPlayer.jsx)
+   The laptop is a physical object, so it keeps its own colours in both themes.
+════════════════════════════════════════════════════════════════ */
+.laptop { position: relative; }
+.laptop::after {
+  content: ''; position: absolute; left: 10%; right: 10%; bottom: -30px; height: 36px;
+  background: radial-gradient(closest-side, var(--accent-glow), transparent);
+  filter: blur(12px); pointer-events: none;
+}
+.laptop-lid {
+  position: relative; padding: 16px 14px 18px;
+  background: linear-gradient(180deg, #1d1d20, #0c0c0d);
+  border: 1px solid #2d2d31; border-radius: 18px 18px 6px 6px;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.laptop-cam { position: absolute; top: 6px; left: 50%; width: 5px; height: 5px; border-radius: 50%; background: #34363b; transform: translateX(-50%); }
+.laptop-screen {
+  position: relative; display: block; width: 100%; padding: 0; border: 0;
+  aspect-ratio: 16 / 10; overflow: hidden; border-radius: 6px; background: #000; cursor: pointer;
+}
+.laptop-screen:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.laptop-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.14); }
+.laptop-glare {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.07) 0%, transparent 38%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 3px);
+}
+.laptop-chrome {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2; display: flex; align-items: center; gap: 6px;
+  padding: 8px 12px; background: rgba(0, 0, 0, 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 11px; color: rgba(255, 255, 255, 0.6);
+}
+.laptop-chrome i { width: 8px; height: 8px; border-radius: 50%; background: #3b3d42; }
+.laptop-chrome i:first-child { background: #ff5f57; }
+.laptop-chrome i:nth-child(2) { background: #febc2e; }
+.laptop-chrome i:nth-child(3) { background: #28c840; }
+.laptop-chrome span { margin-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.laptop-play {
+  position: absolute; left: 50%; top: 46%; z-index: 2; width: 68px; height: 68px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; background: var(--accent);
+  transform: translate(-50%, -50%); transition: transform 0.3s ease;
+  box-shadow: 0 0 0 8px rgba(206, 254, 8, 0.18); animation: reelPulse 2.4s ease-out infinite;
+}
+.laptop-screen:hover .laptop-play { transform: translate(-50%, -50%) scale(1.1); }
+.laptop-timer { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 3px; background: rgba(255, 255, 255, 0.14); }
+.laptop-timer span { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); animation: reelFill linear forwards; }
+/* the small screen is too tight for a title on top of the play button; the caption below already has it */
+@media (max-width: 640px) {
+  .laptop-caption { display: none; }
+  .laptop-play { top: 52%; width: 56px; height: 56px; }
+  .laptop-lid { padding: 14px 10px 14px; }
+  .branch-bar { width: 100%; }
+  .branch-btn { flex: 1; justify-content: center; padding: 9px 8px; }
+}
+.laptop-base {
+  position: relative; height: 15px; margin: 0 -5%;
+  background: linear-gradient(180deg, #55565b 0%, #2c2d30 55%, #1a1b1d 100%);
+  border-radius: 0 0 22px 22px; box-shadow: 0 22px 30px -14px rgba(0, 0, 0, 0.8);
+}
+.laptop-base::before {
+  content: ''; position: absolute; top: 0; left: 50%; width: 17%; height: 5px; transform: translateX(-50%);
+  border-radius: 0 0 8px 8px; background: linear-gradient(180deg, #17181a, #2e2f33);
+}
+
+.reel-list { max-height: 430px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+.reel-item {
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 14px; align-items: center;
+  width: 100%; padding: 12px 18px 12px 15px; text-align: left; background: transparent;
+  border: 0; border-left: 3px solid transparent; cursor: pointer; transition: background 0.2s, border-color 0.2s;
+}
+.reel-item:hover { background: var(--bg-card-hover); }
+.reel-item.is-active { background: var(--bg-card-hover); border-left-color: var(--accent-ink); }
+.reel-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.reel-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; background: #000; }
+.reel-thumb img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.14); }
+.reel-eq {
+  position: absolute; left: 6px; bottom: 6px; display: flex; align-items: flex-end; gap: 2px;
+  height: 12px; padding: 2px 4px; border-radius: 4px; background: rgba(0, 0, 0, 0.7); box-sizing: content-box;
+}
+.reel-eq i { width: 3px; height: 100%; background: var(--accent); transform-origin: bottom; animation: reelEq 0.9s ease-in-out infinite; }
+.reel-eq i:nth-child(2) { animation-delay: 0.25s; }
+.reel-eq i:nth-child(3) { animation-delay: 0.5s; }
+@keyframes reelPulse { 0% { box-shadow: 0 0 0 0 rgba(206, 254, 8, 0.45); } 70%, 100% { box-shadow: 0 0 0 22px rgba(206, 254, 8, 0); } }
+@keyframes reelFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes reelEq { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .laptop-play, .reel-eq i { animation: none; }
+}
+
+/* "Demo" button on project cards (ui/DemoChip.jsx) */
+.demo-chip {
+  position: absolute; top: 12px; left: 12px; z-index: 3; display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--accent); color: #111; font: 700 12px/1 'Inter', sans-serif;
+  box-shadow: 0 0 0 4px rgba(206, 254, 8, 0.18); transition: transform 0.2s ease;
+}
+.demo-chip:hover { transform: scale(1.07); }
+.demo-chip:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ════════════════════════════════════════════════════════════════
+   Experience as a git history (sections/Experience.jsx)
+════════════════════════════════════════════════════════════════ */
+.branch-bar { display: inline-flex; flex-wrap: wrap; gap: 8px; padding: 6px; border: 1px solid var(--border-default); border-radius: 14px; background: var(--bg-card); }
+.branch-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border: 0; border-radius: 9px; cursor: pointer;
+  background: transparent; color: var(--text-secondary);
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 0.8125rem; font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.branch-btn:hover { color: var(--text-primary); }
+.branch-btn[aria-pressed='true'] { background: var(--accent); color: #111; }
+.branch-btn small { font-size: 0.6875rem; opacity: 0.7; }
+.branch-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.gitlog { position: relative; padding-left: 38px; }
+.gitlog::before {
+  content: ''; position: absolute; left: 11px; top: 14px; bottom: 14px; width: 2px;
+  background: linear-gradient(var(--accent-ink), var(--border-strong) 35%, var(--border-subtle));
+  transform-origin: top; animation: logDraw 0.9s ease-out both;
+}
+.commit { position: relative; margin-bottom: 24px; }
+.commit:last-child { margin-bottom: 0; }
+.commit::before {
+  content: ''; position: absolute; left: -35px; top: 26px; width: 14px; height: 14px; box-sizing: border-box;
+  border: 2px solid var(--accent-ink); border-radius: 50%; background: var(--bg-page);
+}
+.commit.is-head::before { background: var(--accent-ink); box-shadow: 0 0 0 5px var(--accent-glow); }
+.commit-meta {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 0.75rem; color: var(--text-muted);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+}
+.commit-meta b { color: var(--accent-ink); font-weight: 600; }
+.commit-head { padding: 2px 8px; border-radius: 6px; background: var(--accent); color: #111; font-weight: 700; font-size: 0.6875rem; }
+.diff-line { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; padding: 7px 10px; border-radius: 6px; background: rgba(206, 254, 8, 0.05); }
+:root[data-theme='light'] .diff-line { background: rgba(92, 122, 0, 0.07); }
+.diff-line + .diff-line { margin-top: 4px; }
+.diff-plus { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-weight: 700; color: var(--accent-ink); }
+@keyframes logDraw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .gitlog::before { animation: none; } }

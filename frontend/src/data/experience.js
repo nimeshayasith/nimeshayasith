@@ -86,14 +86,6 @@ const EDUCATION_LIST = [
   },
 ];
 
-/** Flat, dated list for the home-page timeline grid (newest first). Four items fit its snake layout. */
-export const TIMELINE_EXPERIENCE = [
-  { _id: 't-ca', year: 'Aug 2025 – Jan 2026', title: 'Intern DevOps Engineer', org: 'The CloudAdvisory (Remote)' },
-  { _id: 't-boffo', year: 'May 2025 – Nov 2025', title: 'Software Engineer Intern', org: 'Boffo System Labs, Colombo' },
-  { _id: 't-axiom', year: 'Sep – Oct 2024', title: 'Technical Team Member', org: 'Axiom 2.0 Coding Challenge' },
-  { _id: 't-mehewara', year: 'Mar 2023 – Mar 2024', title: 'Volunteer', org: 'Mehewara outreach programme' },
-];
-
 // Drop a logo or photo named after the id (e.g. exp-cloudadvisory.png) into src/media/experience.
 export const EXPERIENCE = withMedia(EXPERIENCE_LIST, 'experience');
 export const VOLUNTEERING = withMedia(VOLUNTEERING_LIST, 'experience');

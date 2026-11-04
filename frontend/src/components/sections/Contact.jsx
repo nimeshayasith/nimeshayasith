@@ -45,7 +45,7 @@ export default function Contact() {
       <div className="section-divider mb-24 -mt-12" />
 
       {/* Header */}
-      <SectionHeading index="09" label="Get In Touch" title={<>Let's <span className="gradient-text">Connect</span></>}
+      <SectionHeading index="08" label="Get In Touch" title={<>Let's <span className="gradient-text">Connect</span></>}
         lead={<>Have a project in mind or want to collaborate? I'd love to hear from you.</>}
       />
 

@@ -30,8 +30,10 @@ toggles `data-chaos` attributes, so it can't corrupt page state. Screenshots: `0
 |---|---|
 | **Entry sequence** | *Ready to deploy.* One click (**Enter** or **Enter with sound**; it continues silently after a few seconds, so nobody gets stuck). A big counter climbs 0 → 100 while the real build log of this site streams: commit, `terraform apply`, how many articles and videos were synced. Then the screen splits open. |
 | **Sound** | Optional. Synthesised in the browser with Web Audio (no audio files): counter ticks, a boot chord, hover ticks, a page-change whoosh, an alarm and a recovery chime for the Chaos Monkey. Off until chosen; a speaker button stays in the navbar. |
+| **Demo reel** | In the Projects section the project videos play on a laptop: the screen changes channel every few seconds, an *Up next* list picks any demo, and a click opens the player. Projects with a video also get a **Demo** button on their card. Matching is by video title, so a new upload links itself. |
 | **Live status strip** | Under the hero: deployed time and commit of *this build*, a live latency probe of my backend, the newest article and video. Every figure is real. |
 | **Cursor spotlight** | Cards light up under the pointer. |
+| **Experience as a git history** | Each role, degree and volunteering stint is a *commit* on a branch (`main`, `education`, `community`) with the achievements written as green `+` diff lines. |
 | **CloudShell** | A working terminal easter egg (backtick, or the `>_ shell` button): `status` pings the real backend, `terraform plan` lists real resources. Kept deliberately quiet. |
 
 ## 2. Core sections
@@ -45,7 +47,7 @@ toggles `data-chaos` attributes, so it can't corrupt page state. Screenshots: `0
 
 | Source | How it arrives |
 |---|---|
-| **Medium**, **DEV (dev.to)**, **AWS Builder Center**, **YouTube** | `scripts/fetch-feeds.mjs` bundles them at build time. **EventBridge Scheduler** starts an Amplify build every day (`amplify:StartJob`, least-privilege role, no Lambda or secret). In the browser, Medium (via my backend), DEV and YouTube are asked again and merged, so a post published an hour ago shows up without any redeploy. |
+| **Medium**, **DEV (dev.to)**, **AWS Builder Center**, **YouTube** | `scripts/fetch-feeds.mjs` bundles them at build time (YouTube through the official Data API v3 with the key held as an Amplify environment variable, RSS as fallback). **EventBridge Scheduler** starts an Amplify build every day (`amplify:StartJob`, least-privilege role, no Lambda or secret). In the browser, Medium (via my backend), DEV and YouTube are asked again and merged, so a post published an hour ago shows up without any redeploy. |
 
 Honest limits: AWS Builder Center has no public per-author feed, so its article links live in `feeds.config.js`
 (the build also scans the site-wide RSS for posts authored by me). DEV currently has no published posts.
@@ -103,6 +105,8 @@ Diagram in [ARCHITECTURE.md](ARCHITECTURE.md). GitHub Actions also builds the fr
 | [10-architecture.png](screenshots/10-architecture.png) | "Built & shipped on AWS" section |
 | [11-certifications.png](screenshots/11-certifications.png) · [12-projects.png](screenshots/12-projects.png) · [13-business-work.png](screenshots/13-business-work.png) | Core pages |
 | [14-mobile-videos.png](screenshots/14-mobile-videos.png) · [15-light-theme.png](screenshots/15-light-theme.png) | Mobile and light theme |
+| [16-demo-reel-laptop.png](screenshots/16-demo-reel-laptop.png) | Project demos on a laptop with the Up next list |
+| [17-experience-git-log.png](screenshots/17-experience-git-log.png) | Experience as a git history |
 
 **TODO before submitting (deadline Fri 6 Nov):**
 * [ ] Add 2–3 screenshots of the **AWS console** (Amplify build history showing a green deploy; rewrites; the EventBridge schedule; the Terraform `apply` output).

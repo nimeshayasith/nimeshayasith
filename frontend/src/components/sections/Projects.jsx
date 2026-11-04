@@ -6,6 +6,10 @@ import { useInView } from 'react-intersection-observer';
 import TechBadge from '../ui/TechBadge';
 import { Link } from 'react-router-dom';
 import { PROJECTS, PROJECT_CATEGORIES, FEATURED_PROJECTS } from '../../data/projects';
+import ProjectReel from './ProjectReel';
+import DemoChip from '../ui/DemoChip';
+import { useVideos } from '../../hooks/useFeeds';
+import { videoForProject } from '../../data/feeds';
 
 const HOME_LIMIT = 6;
 
@@ -13,6 +17,7 @@ export default function Projects() {
   const categories = PROJECT_CATEGORIES;
   const [activeCategory, setActiveCategory] = useState('all');
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
+  const { videos } = useVideos();
 
   /* 'All' shows the featured set; a category tab shows that category's newest. */
   const source = activeCategory === 'all' ? FEATURED_PROJECTS : PROJECTS.filter(p => p.category.slug === activeCategory);
@@ -26,6 +31,9 @@ export default function Projects() {
       <SectionHeading index="03" label="Portfolio" title={<>Featured <span className="gradient-text">Projects</span></>}
         lead={<>Cloud infrastructure, CI/CD, data pipelines and security research. Two of them were built for AWS Builder weekend challenges.</>}
       />
+
+      {/* Demo reel: the project videos on a laptop */}
+      <ProjectReel limit={5} className="mb-24" />
 
       {/* Filter Tabs */}
       <motion.div
@@ -104,6 +112,7 @@ export default function Projects() {
                         </div>
                       </div>
                     )}
+                    <DemoChip video={videoForProject(project._id, videos)} project={project.title} />
                     {/* Overlay gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
                     {project.aws && (

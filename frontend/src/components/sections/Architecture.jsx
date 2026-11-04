@@ -169,7 +169,7 @@ export default function Architecture() {
 
       <div className="section-divider mb-24 -mt-12" />
 
-      <SectionHeading index="08" label="Under the hood" title={<>Built &amp; shipped on <span className="gradient-text">AWS</span></>}
+      <SectionHeading index="07" label="Under the hood" title={<>Built &amp; shipped on <span className="gradient-text">AWS</span></>}
         lead={<>This portfolio is a static web app. Terraform provisions AWS Amplify Hosting, every push to GitHub builds and deploys it through CloudFront, and a small backend adds live data. Tap a step to see how it works.</>}
       />
 

@@ -10,15 +10,21 @@ import GlassCard from '../components/ui/GlassCard';
 import TechBadge from '../components/ui/TechBadge';
 import Skills from '../components/sections/Skills';
 import { PROJECTS, PROJECT_CATEGORIES } from '../data/projects';
+import ProjectReel from '../components/sections/ProjectReel';
+import DemoChip from '../components/ui/DemoChip';
+import { useVideos } from '../hooks/useFeeds';
+import { videoForProject } from '../data/feeds';
 
 export default function ProjectsPage() {
   const projects = PROJECTS;
   const categories = PROJECT_CATEGORIES;
   const [activeCategory, setActiveCategory] = useState('all');
   const { ref } = useInView({ threshold: 0.05, triggerOnce: true });
+  const { videos } = useVideos();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.location.hash === '#demos') setTimeout(() => document.getElementById('demos')?.scrollIntoView({ behavior: 'smooth' }), 400);
+    else window.scrollTo(0, 0);
     document.title = 'Projects | Nimesha Yasith';
   }, []);
 
@@ -37,6 +43,11 @@ export default function ProjectsPage() {
           lead={<>Cloud infrastructure, CI/CD, data pipelines, security research and software, from the newest to the first.</>}
           animate={false}
         />
+      </div>
+
+      {/* Demo reel: every project that has a video */}
+      <div id="demos" className="page-wrap mb-24" style={{ scrollMarginTop: 96 }}>
+        <ProjectReel />
       </div>
 
       {/* Filter */}
@@ -81,6 +92,7 @@ export default function ProjectsPage() {
                     transition={{ duration: 0.3, delay: i * 0.04 }}
                   >
                     <GlassCard className="overflow-hidden group h-full flex flex-col" hover={false}>
+                      <DemoChip video={videoForProject(project._id, videos)} project={project.title} />
                       {/* Image */}
                       <Link to={`/projects/${project._id}`} className="block">
                         <div className="relative h-52 overflow-hidden bg-gradient-to-br from-primary-900/30 to-slate-900">
