@@ -126,7 +126,54 @@ async function awsBuilder() {
   return out;
 }
 
+// Preferred: the official YouTube Data API v3 (needs YOUTUBE_API_KEY, set as an Amplify environment
+// variable; never committed, never sent to the browser). Reads the channel's "uploads" playlist
+// (id = "UU" + channel id minus its "UC"), then asks for details and view counts of those videos.
+// Cost: ~2 quota units per 50 videos, of 10,000 free per day. `get()` only ever throws "HTTP <status>",
+// so the key can't leak into a build log through an error message.
+async function youtubeApi(key) {
+  const uploads = 'UU' + FEEDS.youtube.channelId.slice(2);
+  const base = 'https://www.googleapis.com/youtube/v3';
+  const ids = [];
+  let pageToken = '';
+  for (let page = 0; page < 4; page++) {
+    const list = await get(`${base}/playlistItems?part=contentDetails&maxResults=50&playlistId=${uploads}${pageToken}&key=${key}`, { json: true });
+    ids.push(...list.items.map((i) => i.contentDetails.videoId));
+    if (!list.nextPageToken) break;
+    pageToken = `&pageToken=${list.nextPageToken}`;
+  }
+  const out = [];
+  for (let i = 0; i < ids.length; i += 50) {
+    const chunk = ids.slice(i, i + 50).join(',');
+    const res = await get(`${base}/videos?part=snippet,statistics&id=${chunk}&key=${key}`, { json: true });
+    for (const v of res.items) {
+      out.push({
+        id: v.id,
+        title: v.snippet.title,
+        published: v.snippet.publishedAt,
+        url: `https://www.youtube.com/watch?v=${v.id}`,
+        thumb: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+        description: (v.snippet.description || '').slice(0, 400),
+        views: Number(v.statistics?.viewCount) || 0,
+      });
+    }
+  }
+  return out;
+}
+
 async function youtube() {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (key) {
+    try {
+      const videos = await youtubeApi(key);
+      console.log('feeds: youtube  via Data API v3');
+      return videos;
+    } catch (e) {
+      console.warn(`feeds: youtube  Data API failed (${e.message}), trying the RSS feed`);
+    }
+  } else {
+    console.log('feeds: youtube  YOUTUBE_API_KEY not set, using the RSS feed');
+  }
   const xml = await get(`https://www.youtube.com/feeds/videos.xml?channel_id=${FEEDS.youtube.channelId}`, { tries: 5 });
   return blocks(xml, 'entry').map((e) => {
     const id = tag(e, 'yt:videoId');
