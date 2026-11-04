@@ -1,0 +1,249 @@
+{
+  "generatedAt": "2026-11-04T02:33:47.974Z",
+  "articles": [
+    {
+      "id": "medium:9fbb6247303a",
+      "source": "medium",
+      "title": "We Built a Post-Quantum Secure Channel for Connected Vehicles — Here Is What We Were Trying to…",
+      "url": "https://medium.com/@nimeshayasith/we-built-a-post-quantum-secure-channel-for-connected-vehicles-here-is-what-we-were-trying-to-9fbb6247303a",
+      "date": "2026-05-28T21:02:20.000Z",
+      "summary": "We Built a Post-Quantum Secure Channel for Connected Vehicles — Here Is What We Were Trying to Solve Part 2 of a two-part series. Part 1 walked through the Hybrid-KEM Key Exchange diagram from the research paper this pro",
+      "image": null,
+      "tags": [
+        "saber",
+        "vehicular-network",
+        "post-quantum",
+        "secure-channel",
+        "kyber"
+      ],
+      "readTime": 10
+    },
+    {
+      "id": "medium:38a40e74c1e5",
+      "source": "medium",
+      "title": "How Two Quantum-Safe Algorithms Shake Hands: A Plain-English Walk Through the Hybrid-KEM Key…",
+      "url": "https://medium.com/@nimeshayasith/how-two-quantum-safe-algorithms-shake-hands-a-plain-english-walk-through-the-hybrid-kem-key-38a40e74c1e5",
+      "date": "2026-05-28T20:52:06.000Z",
+      "summary": "How Two Quantum-Safe Algorithms Shake Hands: A Plain-English Walk Through the Hybrid-KEM Key Exchange Diagram This article is part of a two-part series on a final-year Information Security project that builds a post-quan",
+      "image": "https://cdn-images-1.medium.com/max/581/1*wIK1uPDk6kDPzY0YWXO1Ew.png",
+      "tags": [
+        "post-quantum-cryptography",
+        "saber",
+        "software-defined-networks",
+        "kyber",
+        "kem"
+      ],
+      "readTime": 9
+    },
+    {
+      "id": "medium:b1be9c7f7cec",
+      "source": "medium",
+      "title": "Custom vs OpenCV Built-in Codes Results",
+      "url": "https://medium.com/@nimeshayasith/custom-vs-opencv-built-in-codes-results-b1be9c7f7cec",
+      "date": "2026-04-30T17:36:01.000Z",
+      "summary": "Part of my Image Processing & Computer Vision Series What This Question Is Really About In Previous posts 01, 02, and 03 related to the image processing. we built every filter from scratch using nested Python loops — no ",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*yRvxstaZGL4BBDNGwKtJwg.png",
+      "tags": [
+        "custom-code",
+        "opencv-python"
+      ],
+      "readTime": 5
+    },
+    {
+      "id": "medium:ed2e19cf3af1",
+      "source": "medium",
+      "title": "Gaussian Pyramid and Laplacian Pyramid",
+      "url": "https://medium.com/@nimeshayasith/gaussian-pyramid-and-laplacian-pyramid-ed2e19cf3af1",
+      "date": "2026-04-29T15:06:01.000Z",
+      "summary": "Part of my Image Processing & Computer Vision Why Is It Called a Pyramid? This is the most natural question to ask when you first encounter this topic. The answer is beautifully simple. What is Pyramid When you build a G",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*wlWah6040VjVBzb4dzHlKQ.png",
+      "tags": [
+        "gaussian-pyramid",
+        "laplacian-pyramid"
+      ],
+      "readTime": 6
+    },
+    {
+      "id": "medium:6ec3425ebc4d",
+      "source": "medium",
+      "title": "Gaussian Filtering: The Weighted Average Filter Explained Simply",
+      "url": "https://medium.com/@nimeshayasith/gaussian-filtering-the-weighted-average-filter-explained-simply-6ec3425ebc4d",
+      "date": "2026-04-22T14:31:01.000Z",
+      "summary": "Part of my Image Processing & Computer Vision Series What is the Problem With Average Filter? Average Filter vs Weighted Average Filter In my previous post, we built the average filter from scratch. Every pixel inside th",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*9142a_cU-Es9T22xJsNCrg.png",
+      "tags": [
+        "weighted-average-filter",
+        "control-blur",
+        "gaussian-filter",
+        "image-processing"
+      ],
+      "readTime": 6
+    },
+    {
+      "id": "medium:dbf741228fbf",
+      "source": "medium",
+      "title": "Salt & Pepper Noise, Non-Linear Filters, and Why Median Filtering Wins",
+      "url": "https://medium.com/@nimeshayasith/salt-pepper-noise-non-linear-filters-and-why-median-filtering-wins-dbf741228fbf",
+      "date": "2026-04-15T14:31:01.000Z",
+      "summary": "Part of my Image Processing & Computer Vision Learning process Non Linear Filters What are non-linear filters? In Post 01 we explored linear filters — filters that compute a weighted sum of the neighbourhood pixels. But ",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*JbSXpPILZVkGCsiTly4z_Q.png",
+      "tags": [
+        "salt-and-pepper-noise",
+        "non-linear-filtering",
+        "median-filter"
+      ],
+      "readTime": 7
+    },
+    {
+      "id": "medium:d489884eb91a",
+      "source": "medium",
+      "title": "Introduction to Spatial Filtering & Average Filtering",
+      "url": "https://medium.com/@nimeshayasith/introduction-to-spatial-filtering-average-filtering-d489884eb91a",
+      "date": "2026-04-08T14:31:01.000Z",
+      "summary": "Part of my Image Processing & Computer Vision Learning Spatial Filtering What is Spatial Filtering? When we talk about image processing , one of the very first tools you will learn about is spatial filtering . The idea i",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*M7fHe83DLRwxZthzA9JhOg.png",
+      "tags": [
+        "average-filter",
+        "weighted-filtering",
+        "spatial-filtering"
+      ],
+      "readTime": 5
+    },
+    {
+      "id": "medium:dd4ae2e4f79c",
+      "source": "medium",
+      "title": "What is MPI?",
+      "url": "https://medium.com/@nimeshayasith/what-is-mpi-dd4ae2e4f79c",
+      "date": "2026-03-24T06:20:41.000Z",
+      "summary": "Generation Of MPI MPI is a specification for the developers and users of message passing libraries. Below , I mentioned that what are the benefits of the MPI Standardization — MPI is the only message passing library that",
+      "image": "https://cdn-images-1.medium.com/max/438/0*NgRoU4H0FokADBX1.gif",
+      "tags": [
+        "what-is-mpi"
+      ],
+      "readTime": 1
+    },
+    {
+      "id": "medium:61b4a2ac48c0",
+      "source": "medium",
+      "title": "From “No Space Left” to “Hello Simulator”: A Guide to ns-3.35 on Ubuntu 22.04",
+      "url": "https://medium.com/@nimeshayasith/from-no-space-left-to-hello-simulator-a-guide-to-ns-3-35-on-ubuntu-22-04-61b4a2ac48c0",
+      "date": "2026-01-25T03:27:25.000Z",
+      "summary": "Setting up ns-3.35 on a modern system like Ubuntu 22.04 inside a Virtual Machine ( VMware ) often leads to unexpected errors. This guide covers the common pitfalls — like disk space exhaustion and Python binding conflict",
+      "image": null,
+      "tags": [],
+      "readTime": 2
+    },
+    {
+      "id": "medium:6087ce62fe42",
+      "source": "medium",
+      "title": "Terraform Remote State with Azure: A Production Guide",
+      "url": "https://medium.com/@nimeshayasith/terraform-remote-state-with-azure-a-production-guide-6087ce62fe42",
+      "date": "2025-10-31T12:34:09.000Z",
+      "summary": "How enterprise teams collaborate safely on infrastructure using Azure Blob Storage and state locking The Problem: Local State Doesn’t Scale Picture this: You’re working on your company’s Azure infrastructure. You run ter",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*9F8dQyxCaz1BwJ-diASqkg.png",
+      "tags": [],
+      "readTime": 9
+    }
+  ],
+  "videos": [
+    {
+      "id": "fmJjsgCCsfE",
+      "title": "LankaResilience: Turning 47 Years of Sri Lankan Flood Records into an Interactive Map | AWS",
+      "published": "2026-11-02T19:30:56+00:00",
+      "url": "https://www.youtube.com/watch?v=fmJjsgCCsfE",
+      "thumb": "https://i.ytimg.com/vi/fmJjsgCCsfE/hqdefault.jpg",
+      "description": "LankaResilience – Turning 47 Years of Sri Lankan Flood Records into an Interactive Map!\n\nWhat if historical flood records could be explored geographically instead of being limited to spreadsheets?\n\nIntroducing LankaResilience, an interactive, serverless web application that visualizes historical flood reporting information across all 25 districts of Sri Lanka, covering 1974–2020.\n\nBuilt as part of",
+      "views": 3
+    },
+    {
+      "id": "bwF6liJogoE",
+      "title": "TETA-Guard | Temporal-Echo Attack Detection in Software-Defined Vehicular Networks",
+      "published": "2026-09-06T04:44:41+00:00",
+      "url": "https://www.youtube.com/watch?v=bwF6liJogoE",
+      "thumb": "https://i.ytimg.com/vi/bwF6liJogoE/hqdefault.jpg",
+      "description": "🚗 **TETA-Guard: AI & Blockchain-Based Security for Software-Defined Vehicular Networks**\n\nModern vehicular networks rely on continuously changing topology and time-sensitive communication. But what happens when an attacker manipulates the information used by the network controller?\n\nThis project presents **TETA-Guard**, a security framework designed to detect and mitigate **Temporal-Echo Topology",
+      "views": 14
+    },
+    {
+      "id": "A5BrBSkR5Zk",
+      "title": "AutoTrust Bank — Agentic AI Banking Chatbot (Live Demo) | LangGraph + RAG + Llama 3.2",
+      "published": "2026-06-29T16:35:56+00:00",
+      "url": "https://www.youtube.com/watch?v=A5BrBSkR5Zk",
+      "thumb": "https://i.ytimg.com/vi/A5BrBSkR5Zk/hqdefault.jpg",
+      "description": "AutoTrust Bank is an agentic AI customer support chatbot built for banking — combining a 9-node LangGraph state machine, RAG over ChromaDB, DistilBERT intent classification, and a locally-run Llama 3.2 3B model via Ollama.\n\nThis demo walks through the live system: greetings, account balance and transaction queries, financial calculators (loan EMI, FD maturity, transfer fees), and general FAQ suppo",
+      "views": 20
+    },
+    {
+      "id": "16ILmgYVVYI",
+      "title": "SecureStay — Cloud-Native Hotel Booking Platform | AWS, Kubernetes, Terraform, CI/CD",
+      "published": "2026-06-28T06:49:34+00:00",
+      "url": "https://www.youtube.com/watch?v=16ILmgYVVYI",
+      "thumb": "https://i.ytimg.com/vi/16ILmgYVVYI/hqdefault.jpg",
+      "description": "SecureStay is a cloud-native hotel booking platform built as a microservice system and deployed through a complete DevOps workflow — from local Docker Compose, to Kubernetes via Minikube, to a fully automated production deployment on AWS EKS.\n\nThis was built as our final project for the EC7205 Cloud Computing module at the University of Ruhuna.\n\nSecureStay follows a microservice architecture with ",
+      "views": 19
+    },
+    {
+      "id": "bc2XBod2RXQ",
+      "title": "Successfully deployed an Mini-Finance application on Azure using production-grade",
+      "published": "2025-10-29T14:25:43+00:00",
+      "url": "https://www.youtube.com/watch?v=bc2XBod2RXQ",
+      "thumb": "https://i.ytimg.com/vi/bc2XBod2RXQ/hqdefault.jpg",
+      "description": "This assignment was part of Week 8 of the DevOps Micro Internship, where I learned how tech giants deploy applications at scale using infrastructure as code and configuration management.\n\nThis assignment was part of Week 8 of the DevOps Micro Internship, where I learned how tech giants deploy applications at scale using infrastructure as code and configuration management.\n\n🔗 Read my detailed blog",
+      "views": 6
+    },
+    {
+      "id": "G1ysozzXL-g",
+      "title": "CalmMind–Stress-Free Zone Web & Mobile App Demo for Stress Management & Relaxation |software project",
+      "published": "2025-05-24T07:31:33+00:00",
+      "url": "https://www.youtube.com/watch?v=G1ysozzXL-g",
+      "thumb": "https://i.ytimg.com/vi/G1ysozzXL-g/hqdefault.jpg",
+      "description": "Welcome to the official demo of Calm Mind – Stress-Free Zone, a cross-platform software solution developed as part of the EE5454 Software Project at the Faculty of Engineering, University of Ruhuna.\n\n🧠 Calm Mind is a web and mobile application designed to help users manage stress, track their mental wellness, and engage in relaxing guided content such as meditation and music therapy.\n\n🌟 Core Fea",
+      "views": 40
+    },
+    {
+      "id": "4WtIfVyymvc",
+      "title": "Inside WSO2, IFS & Creative Software | Our Field Visit Experience",
+      "published": "2025-03-28T17:12:58+00:00",
+      "url": "https://www.youtube.com/watch?v=4WtIfVyymvc",
+      "thumb": "https://i.ytimg.com/vi/4WtIfVyymvc/hqdefault.jpg",
+      "description": "📌 Field Visit to WSO2, IFS & Creative Software | Our Learning Experience\n\nIn this video, we share our experience visiting three top IT companies in Sri Lanka – WSO2, IFS, and Creative Software. 🚀 We learned about software development processes, technologies, company culture, and career tips from industry experts.\n\n🔹 Creative Software: Agile & Scrum, SDLC, LinkedIn Optimization, Design Patterns\n",
+      "views": 362
+    },
+    {
+      "id": "yrtQRqwCMs4",
+      "title": "Unicorn Video Pitch",
+      "published": "2025-01-20T19:40:20+00:00",
+      "url": "https://www.youtube.com/watch?v=yrtQRqwCMs4",
+      "thumb": "https://i.ytimg.com/vi/yrtQRqwCMs4/hqdefault.jpg",
+      "description": "The software, Unicare, is a comprehensive mobile health management application designed to help users maintain a balanced and healthy lifestyle. It addresses key challenges like fragmented health data, inconsistent habits, lack of personalized guidance, and neglect of mental health.\n\nKey Features:\n\nHolistic Health Tracking: Integrates nutrition, exercise, sleep, mental wellness, and hygiene into a",
+      "views": 4
+    },
+    {
+      "id": "txTKUB1CrDM",
+      "title": "Solar photovoltaic to use domestic electric devices in the power crisis",
+      "published": "2024-07-01T02:06:55+00:00",
+      "url": "https://www.youtube.com/watch?v=txTKUB1CrDM",
+      "thumb": "https://i.ytimg.com/vi/txTKUB1CrDM/hqdefault.jpg",
+      "description": "I'm excited to share our recent project for the ME1202 Introduction to Mechanical Engineering course, where we explored the application of solar photovoltaic technology to power domestic electric devices. This project, undertaken by our first-year group, aims to provide valuable insights into how we can leverage renewable energy to address the current power crisis.\n\nWhile this isn't a novel innova",
+      "views": 10
+    },
+    {
+      "id": "sWgjpQjwSQI",
+      "title": "Student Registration System Desktop Application Group Project 4624 4608",
+      "published": "2024-06-22T10:32:05+00:00",
+      "url": "https://www.youtube.com/watch?v=sWgjpQjwSQI",
+      "thumb": "https://i.ytimg.com/vi/sWgjpQjwSQI/hqdefault.jpg",
+      "description": "Student Registration System\n\nThis is a desktop application developed in C# and Windows Forms, implementing the MVVM (Model-View-ViewModel) pattern for a clean and organized architecture. The application allows for student registration and management.\n\nFeatures\nLogin Screen: Users can log in with their username and password, which is verified against the stored password in the database.\n\nCRUD Opera",
+      "views": 61
+    },
+    {
+      "id": "kF2ysKFyC1c",
+      "title": "Personal Finance Tracker",
+      "published": "2024-06-22T08:12:47+00:00",
+      "url": "https://www.youtube.com/watch?v=kF2ysKFyC1c",
+      "thumb": "https://i.ytimg.com/vi/kF2ysKFyC1c/hqdefault.jpg",
+      "description": "Title: Personal Finance Tracker - Manage Your Finances Easily with Our Web App\n\n**Description:**\n\nWelcome to the Personal Finance Tracker demo! In this video, we showcase our web application designed to help users manage their personal finances effortlessly.\n\n### Key Features:\n\n1. **Dashboard Overview:** Get a clear picture of your financial situation with an easy-to-use dashboard. Track your inco",
+      "views": 149
+    }
+  ]
+}

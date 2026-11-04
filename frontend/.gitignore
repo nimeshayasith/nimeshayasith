@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+
+# Personal source documents kept next to the project (copies live in public/docs)
+README (1).md
+AWS Certified Solutions Architect - Associate certificate.pdf
+Nimesha_Yasith_CV_Associate_DevOps.pdf
