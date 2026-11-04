@@ -93,4 +93,11 @@ export const sfx = {
   error()   { tone(110, { dur: 0.22, type: 'sawtooth', vol: 0.09, to: 70 }); tone(110, { dur: 0.22, type: 'sawtooth', vol: 0.09, at: 0.28, to: 70 }); },
   alarm()   { for (let i = 0; i < 4; i++) tone(i % 2 ? 660 : 880, { dur: 0.14, type: 'square', vol: 0.05, at: i * 0.16 }); },
   heal()    { tone(440, { dur: 0.09, type: 'sine', vol: 0.08 }); tone(660, { dur: 0.14, type: 'sine', vol: 0.08, at: 0.08 }); },
+  /** a match strike, then a soft whoosh as the wick catches */
+  light()   {
+    noise({ dur: 0.16, from: 2200, to: 6000, vol: 0.08 });
+    noise({ dur: 0.6, from: 180, to: 800, vol: 0.06, at: 0.14 });
+    tone(196, { dur: 0.6, type: 'sine', vol: 0.05, at: 0.16 });
+    tone(294, { dur: 0.6, type: 'sine', vol: 0.04, at: 0.2 });
+  },
 };

@@ -138,3 +138,53 @@
 .diff-plus { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-weight: 700; color: var(--accent-ink); }
 @keyframes logDraw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) { .gitlog::before { animation: none; } }
+
+/* ════════════════════════════════════════════════════════════════
+   "Find the light": the lantern cursor and the veil (ui/Lamp.jsx)
+   Dark theme: night. Light theme: a morning fog the lantern burns away.
+   The veil sits below the navbar (9999) and the status pill (9990) and every dialog (100000).
+════════════════════════════════════════════════════════════════ */
+:root { --veil: 5, 5, 5; --veil-a: 0.9; --glow-a: 0.1; }
+:root[data-theme='light'] { --veil: 224, 214, 194; --veil-a: 0.8; --glow-a: 0.2; }
+@media (pointer: coarse) {
+  :root { --veil-a: 0.62; }
+  :root[data-theme='light'] { --veil-a: 0.55; }
+}
+.lamp-veil {
+  position: fixed; inset: 0; z-index: 9000; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(circle calc(var(--lr, 260px) * 0.8) at var(--lx, 50%) var(--ly, 40%), rgba(255, 170, 60, var(--glow-a)), transparent 72%),
+    radial-gradient(circle var(--lr, 260px) at var(--lx, 50%) var(--ly, 40%), transparent 0%, transparent 44%, rgba(var(--veil), calc(var(--veil-a) * 0.4)) 68%, rgba(var(--veil), var(--veil-a)) 100%);
+}
+.lamp { position: fixed; left: 0; top: 0; z-index: 99000; pointer-events: none; opacity: 0; will-change: transform; }
+.lamp-swing { position: absolute; left: -22px; top: -28px; width: 44px; height: 72px; transform-origin: 22px 6px; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55)); }
+.lamp-flame { transform-origin: 22px 37px; animation: lampFlame 0.9s ease-in-out infinite; filter: drop-shadow(0 0 5px rgba(255, 170, 50, 0.95)); }
+.lamp-hint {
+  position: absolute; left: 30px; top: -10px; white-space: nowrap; padding: 6px 11px; border-radius: 999px;
+  background: rgba(8, 8, 8, 0.78); color: #ffd98a; border: 1px solid rgba(255, 190, 90, 0.35);
+  font: 600 11px/1 ui-monospace, 'SFMono-Regular', Consolas, monospace; letter-spacing: 0.02em;
+  transition: opacity 0.8s ease;
+}
+.lamp-hint.is-gone { opacity: 0; }
+@keyframes lampFlame {
+  0%, 100% { transform: scale(1, 1); }
+  20% { transform: scale(0.93, 1.08) skewX(2deg); }
+  45% { transform: scale(1.05, 0.94) skewX(-2deg); }
+  70% { transform: scale(0.96, 1.06); }
+}
+/* the lantern is the pointer, except over dialogs and videos where the real arrow comes back */
+html.lamp-cursor, html.lamp-cursor * { cursor: none !important; }
+html.lamp-cursor [role='dialog'], html.lamp-cursor [role='dialog'] *, html.lamp-cursor iframe { cursor: auto !important; }
+@media (prefers-reduced-motion: reduce) { .lamp-flame { animation: none; } }
+@media print { .lamp, .lamp-veil { display: none !important; } }
+
+/* ════════════════════════════════════════════════════════════════
+   Read-only résumé (pages/ResumePage.jsx)
+   There is no PDF anywhere on the site. The text can be read, not selected, and does not print.
+════════════════════════════════════════════════════════════════ */
+.resume-sheet { -webkit-user-select: none; user-select: none; }
+.resume-print-note { display: none; }
+@media print {
+  .resume-sheet, .resume-actions { display: none !important; }
+  .resume-print-note { display: block; padding: 48px; font: 16px/1.6 'Inter', sans-serif; color: #111; }
+}

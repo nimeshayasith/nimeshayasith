@@ -16,7 +16,7 @@
 
 A static React portfolio hosted with **AWS Amplify Hosting** (served through CloudFront), provisioned with **Terraform**, and shipped by `git push`. Content updates itself: a scheduled rebuild (EventBridge Scheduler → Amplify) bundles my newest Medium, DEV and AWS Builder articles and YouTube videos every day.
 
-**The creative feature is a Chaos Monkey.** Use the *break something* button (bottom-left, and in the hero): it takes down three components of the page you are on, Kubernetes-style (`CrashLoopBackOff`, `ImagePullBackOff`…), and you restart each pod by clicking it while an MTTR clock runs. Leave it alone and the controller self-heals after 30 s. There is also an entry sequence (optional synthesised sound) and a small terminal easter egg (<kbd>`</kbd>).
+**The creative feature is *Find the Light*.** The page starts in the dark and your cursor is a kerosene lamp: only the circle of light around it is clear (in the light theme it becomes a morning fog the lamp burns away). The navbar and dialogs stay above the veil, a lamp button switches to plain lights, and the lamp drifts on its own or follows keyboard focus when there is no mouse. Also: a **Chaos Monkey** you can fight (*break something*: three components fail Kubernetes-style and you restart them against an MTTR clock), project demos on a laptop, experience as a git history, an entry screen with optional synthesised sound, a read-only résumé (no PDF to download) and a small terminal easter egg (<kbd>`</kbd>). Full write-up: [docs/BUILDER_ARTICLE.md](docs/BUILDER_ARTICLE.md).
 
 | Folder | What it is |
 |---|---|

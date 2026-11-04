@@ -5,6 +5,7 @@ import BootLoader from './components/ui/BootLoader';
 import CloudShell from './components/shell/CloudShell';
 import ChaosMonkey from './components/chaos/ChaosMonkey';
 import Effects from './components/ui/Effects';
+import Lamp from './components/ui/Lamp';
 import { warmBackend } from './services/api';
 
 // Pages are code-split so the first paint only ships what it needs.
@@ -19,6 +20,7 @@ const BlogsPage = lazy(() => import('./pages/BlogsPage'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const BusinessPage = lazy(() => import('./pages/BusinessPage'));
 const VideosPage = lazy(() => import('./pages/VideosPage'));
+const ResumePage = lazy(() => import('./pages/ResumePage'));
 
 /* Route-level loading state: same pipeline motif as the boot screen. */
 const Spinner = () => (
@@ -72,6 +74,7 @@ export default function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/business" element={<BusinessPage />} />
           <Route path="/videos" element={<VideosPage />} />
+          <Route path="/resume" element={<ResumePage />} />
           {/* Unknown URLs land on the home page */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -79,6 +82,7 @@ export default function App() {
       <CloudShell />
       <ChaosMonkey />
       <Effects />
+      <Lamp />
     </BrowserRouter>
   );
 }

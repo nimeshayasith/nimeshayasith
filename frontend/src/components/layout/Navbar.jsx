@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ExternalLink, Download, TerminalSquare, ChevronDown } from 'lucide-react';
+import { Menu, X, ExternalLink, FileText, TerminalSquare, ChevronDown } from 'lucide-react';
 import ThemeToggle from '../ui/ThemeToggle';
 import SoundToggle from '../ui/SoundToggle';
-import { FILES } from '../../data/profile';
+import LampToggle from '../ui/LampToggle';
 import { openCloudShell } from '../shell/CloudShell';
 
 const NAV_LINKS = [
@@ -217,8 +217,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ── Download CV button (Classic Portfolio style) ── */}
+        {/* ── Read-only résumé link (there is no downloadable PDF) ── */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <LampToggle />
           <SoundToggle />
           <ThemeToggle />
 
@@ -240,10 +241,7 @@ export default function Navbar() {
             <span className="hidden sm:inline">&gt;_ shell</span>
           </button>
 
-          <a
-            href={FILES.cv}
-            target="_blank"
-            rel="noreferrer"
+          <Link to="/resume"
             className="hidden lg:flex"
             style={{
               alignItems: 'center',
@@ -281,10 +279,10 @@ export default function Navbar() {
                 flexShrink: 0,
               }}
             >
-              <Download style={{ width: 15, height: 15, color: '#111' }} />
+              <FileText style={{ width: 15, height: 15, color: '#111' }} />
             </span>
-            Download CV
-          </a>
+            Read résumé
+          </Link>
 
           {/* Mobile hamburger */}
           <button
@@ -326,10 +324,7 @@ export default function Navbar() {
                 </div>
               ))}
               <div style={{ marginTop: 12 }}>
-                <a
-                  href={FILES.cv}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link to="/resume"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -348,10 +343,10 @@ export default function Navbar() {
                     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                     width: 32, height: 32, borderRadius: '50%', background: '#111', marginRight: 10,
                   }}>
-                    <Download style={{ width: 14, height: 14, color: 'var(--accent)' }} />
+                    <FileText style={{ width: 14, height: 14, color: 'var(--accent)' }} />
                   </span>
-                  Download CV
-                </a>
+                  Read résumé
+                </Link>
               </div>
             </div>
           </motion.div>

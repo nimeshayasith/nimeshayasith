@@ -30,7 +30,6 @@ export const SOCIAL_LINKS = {
 };
 
 export const FILES = {
-  cv: '/docs/Nimesha_Yasith_CV.pdf',
   awsCertificate: '/docs/AWS_Solutions_Architect_Associate.pdf',
 };
 

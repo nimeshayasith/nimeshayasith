@@ -25,6 +25,8 @@ const ROUTES = {
   articles: '/blogs',
   business: '/business',
   work: '/business',
+  resume: '/resume',
+  cv: '/resume',
   contact: '/#contact',
   skills: '/#skills',
   architecture: '/#architecture',
@@ -38,7 +40,8 @@ const LINKS = {
   hackerrank: SOCIAL_LINKS.hackerrank,
   aws: SOCIAL_LINKS.awsBuilder,
   repo: SOCIAL_LINKS.repo,
-  cv: FILES.cv,
+  cv: '/resume',
+  resume: '/resume',
   cert: FILES.awsCertificate,
   verify: FEATURED_CERT.credentialUrl,
 };
@@ -372,14 +375,14 @@ const commands = {
   },
 
   async ls({ print }) {
-    print({ kind: 'accent', text: 'about.md  projects/  experience/  certifications/  blog/  library/  contact.txt  cv.pdf' });
+    print({ kind: 'accent', text: 'about.md  projects/  experience/  certifications/  blog/  library/  contact.txt  resume (read-only)' });
   },
 
   async cat({ print }, args) {
     const f = args[0];
     if (f === 'about.md') return commands.about({ print });
     if (f === 'contact.txt') return commands.contact({ print });
-    if (f === 'cv.pdf') return commands.open({ print }, ['cv']);
+    if (f === 'resume' || f === 'cv.pdf') return commands.open({ print }, ['cv']);
     return print({ kind: 'err', text: `cat: ${f ?? ''}: No such file. Try 'ls'.` });
   },
 

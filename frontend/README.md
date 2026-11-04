@@ -37,4 +37,4 @@ Change a file in `src/data/`, commit, push. Amplify rebuilds and redeploys autom
 
 `/api/*` is proxied to `https://portfolio-6gcd.onrender.com` (Amplify rewrite in production,
 Vite proxy locally), so the browser never makes a cross-origin call. Override with
-`BACKEND_ORIGIN=https://… npm run dev` or `VITE_API_URL` (see `.env.example`).
+`BACKEND_ORIGIN=https://… npm run dev` or `VITE_API_URL` (a `.env` file works too; it is git-ignored). With nothing set, the app calls a same-origin `/api` and `/yt`, which Vite proxies in dev and an Amplify rewrite proxies in production, so no CORS settings are needed.

@@ -2,8 +2,9 @@ import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import {
   Github, Linkedin, Youtube, BookOpen,
-  ArrowRight, Mail, FolderGit2, Cpu, Award, Flame,
+  ArrowRight, Mail, FolderGit2, Cpu, Award, Flame, Lamp,
 } from 'lucide-react';
+import useLampStore from '../../store/lampStore';
 import myPhoto from '../../assets/my.jpeg';
 import { PERSONAL, ROLES, SOCIAL_LINKS } from '../../data/profile';
 import { PROJECTS } from '../../data/projects';
@@ -89,6 +90,7 @@ const staggerLeft = { hidden: {}, show: { transition: { staggerChildren: 0.10, d
 const staggerRight = { hidden: {}, show: { transition: { staggerChildren: 0.13, delayChildren: 0.4 } } };
 
 export default function Hero() {
+  const lampOn = useLampStore((s) => s.on);
   const typed = useTypewriter(ROLES);
 
   return (
@@ -239,18 +241,34 @@ export default function Hero() {
             ))}
           </motion.div>
 
+          <div className="cp-hint-row" style={{ marginTop: 22, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          <motion.button
+            variants={fadeLeft}
+            type="button"
+            onClick={() => useLampStore.getState().toggle()}
+            className="cp-shell-hint"
+            aria-pressed={lampOn}
+            title={lampOn ? 'Click to turn the lights on' : 'Click to bring the lamp back'}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, alignSelf: 'flex-start', padding: '8px 14px', borderRadius: 12, background: 'var(--bg-card)', border: '1px dashed var(--accent-glow)', color: 'var(--text-secondary)', fontFamily: 'ui-monospace, Consolas, monospace', fontSize: 12, cursor: 'pointer', transition: 'all 0.25s ease' }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent-ink)'; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--accent-glow)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+          >
+            <Lamp style={{ width: 15, height: 15, color: 'var(--accent-ink)' }} />
+            <span>{lampOn ? <>it&apos;s dark in here. <b style={{ color: 'var(--accent-ink)' }}>move your lamp</b></> : <>lights are on. <b style={{ color: 'var(--accent-ink)' }}>bring back the lamp</b></>}</span>
+          </motion.button>
           <motion.button
             variants={fadeLeft}
             type="button"
             onClick={() => window.dispatchEvent(new Event('ny:chaos'))}
             className="cp-shell-hint"
-            style={{ marginTop: 22, display: 'inline-flex', alignItems: 'center', gap: 10, alignSelf: 'flex-start', padding: '8px 14px', borderRadius: 12, background: 'var(--bg-card)', border: '1px dashed var(--accent-glow)', color: 'var(--text-secondary)', fontFamily: 'ui-monospace, Consolas, monospace', fontSize: 12, cursor: 'pointer', transition: 'all 0.25s ease' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, alignSelf: 'flex-start', padding: '8px 14px', borderRadius: 12, background: 'var(--bg-card)', border: '1px dashed var(--accent-glow)', color: 'var(--text-secondary)', fontFamily: 'ui-monospace, Consolas, monospace', fontSize: 12, cursor: 'pointer', transition: 'all 0.25s ease' }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent-ink)'; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--accent-glow)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
           >
             <Flame style={{ width: 15, height: 15, color: 'var(--accent-ink)' }} />
             <span>prod looks stable. <b style={{ color: 'var(--accent-ink)' }}>break something</b></span>
           </motion.button>
+          </div>
         </motion.div>
 
         {/* ═══ CENTER — Photo (raw, no clipping, blends with dark bg) ═══ */}

@@ -4,7 +4,6 @@ dist/
 # local secrets and state
 .env
 .env.*
-!.env.example
 *.tfstate
 *.tfstate.*
 .terraform/

@@ -48,9 +48,17 @@ export default function BootLoader() {
   }, []);
 
   const enter = useCallback((withSound) => {
-    if (withSound) sfx.setEnabled(true); // runs inside the click, so the browser allows audio
+    if (withSound) { sfx.setEnabled(true); sfx.light(); } // runs inside the click, so the browser allows audio
     setPhase('run');
   }, []);
+
+  // tell the lantern (ui/Lamp.jsx) to wait until the entry screen is gone
+  useEffect(() => {
+    const root = document.documentElement;
+    if (phase === 'done') delete root.dataset.boot;
+    else root.dataset.boot = 'on';
+    return () => { delete root.dataset.boot; };
+  }, [phase]);
 
   // lock scrolling while the overlay is up
   useEffect(() => {
@@ -123,14 +131,14 @@ export default function BootLoader() {
         <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 clamp(24px, 8vw, 120px)' }}>
           <p style={{ fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#cefe08', marginBottom: 20 }}>Nimesha Yasith · Cloud &amp; DevOps Engineer</p>
           <h1 style={{ fontFamily: 'Unbounded, sans-serif', fontWeight: 800, fontSize: 'clamp(2.25rem, 7vw, 5rem)', lineHeight: 1.02, letterSpacing: '-0.03em', color: '#fff', margin: 0 }}>
-            Ready to<br />deploy<span style={{ color: '#cefe08' }}>.</span>
+            It&apos;s dark<br />in here<span style={{ color: '#cefe08' }}>.</span>
           </h1>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 40 }}>
             <button type="button" onClick={() => enter(false)} autoFocus style={gateBtn(false)}>Enter</button>
-            <button type="button" onClick={() => enter(true)} style={gateBtn(true)}>Enter with sound</button>
+            <button type="button" onClick={() => enter(true)} style={gateBtn(true)}>Light the lamp · with sound</button>
           </div>
           <p style={{ marginTop: 22, fontSize: 11, color: '#6b7280', letterSpacing: '0.06em' }}>
-            enter ↵ · s = with sound · continues silently in a moment
+            the page is dark until you carry a lamp through it · enter ↵ · s = with sound · lights itself in a moment
           </p>
           <div aria-hidden="true" style={{ position: 'absolute', left: 0, bottom: 0, height: 3, background: '#cefe08', transformOrigin: 'left', animation: `nyGate ${GATE_MS}ms linear forwards`, width: '100%' }} />
         </div>
