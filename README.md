@@ -10,6 +10,38 @@
 
 ---
 
+## ☁️ This repository: my portfolio, deployed on AWS
+
+> **Live site:** https://main.d3ag7vu427q7y9.amplifyapp.com  ·  built for the **AWS Builder Center Student Portfolio Challenge**
+
+A static React portfolio hosted with **AWS Amplify Hosting** (served through CloudFront), provisioned with **Terraform**, and shipped by `git push`. Content updates itself: a scheduled rebuild (EventBridge Scheduler → Amplify) bundles my newest Medium, DEV and AWS Builder articles and YouTube videos every day.
+
+**The creative feature is a Chaos Monkey.** Use the *break something* button (bottom-left, and in the hero): it takes down three components of the page you are on, Kubernetes-style (`CrashLoopBackOff`, `ImagePullBackOff`…), and you restart each pod by clicking it while an MTTR clock runs. Leave it alone and the controller self-heals after 30 s. There is also an entry sequence (optional synthesised sound) and a small terminal easter egg (<kbd>`</kbd>).
+
+| Folder | What it is |
+|---|---|
+| [`frontend/`](frontend) | React + Vite + Tailwind app (static, bundled data + live backend data) |
+| [`terraform/`](terraform) | Infrastructure as code: Amplify app, branch, rewrite rules, scheduled rebuild, optional domain + budget alert |
+| [`amplify.yml`](amplify.yml) | Monorepo build spec used by Amplify |
+| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | CI: frontend build + `terraform fmt/validate` |
+| [`docs/`](docs) | Architecture notes, deployment runbook, challenge write-up |
+
+```mermaid
+flowchart LR
+    Dev["git push origin main"] --> GH["GitHub"]
+    GH -->|webhook| AMP["AWS Amplify<br/>npm ci → vite build"]
+    TF["Terraform"] -.provisions.-> AMP
+    AMP --> CF["Amazon CloudFront<br/>global edge + HTTPS"]
+    CF --> V["Visitor"]
+    CF -->|"/api/* rewrite"| R["Backend on Render<br/>Medium feed · library"]
+    CF -->|"/yt/* rewrite"| YT["YouTube channel feed"]
+    SCH["EventBridge Scheduler<br/>daily"] -->|StartJob| AMP
+```
+
+More: [architecture](docs/ARCHITECTURE.md) · [deploy it yourself](docs/DEPLOYMENT.md) · [challenge write-up](docs/SUBMISSION.md)
+
+---
+
 ## 👨‍💻 About Me
 
 I'm a Computer Engineering graduate from the **University of Ruhuna, Sri Lanka**, focused on **cloud infrastructure, DevOps and Site Reliability Engineering**. I like replacing manual setup with automation that is reliable and repeatable: Terraform for infrastructure, Docker and Kubernetes for workloads, and CI/CD pipelines that verify success instead of assuming it.
