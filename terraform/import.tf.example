@@ -1,0 +1,20 @@
+# Use this when you ALREADY created the Amplify app in the console (you did:
+# app id d3ag7vu427q7y9, region us-east-1) and want Terraform to take it over
+# and FIX it in place, so the URL stays https://main.d3ag7vu427q7y9.amplifyapp.com
+#
+#   1. cp import.tf.example import.tf
+#   2. terraform plan      # shows the app + branch being imported and what changes
+#   3. terraform apply
+#
+# Delete import.tf afterwards (or keep it; imports are idempotent).
+# If you want a brand-new app instead, do NOT create import.tf.
+
+import {
+  to = module.amplify_hosting.aws_amplify_app.this
+  id = "d3ag7vu427q7y9"
+}
+
+import {
+  to = module.amplify_hosting.aws_amplify_branch.main
+  id = "d3ag7vu427q7y9/main"
+}

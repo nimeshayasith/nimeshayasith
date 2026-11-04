@@ -1,0 +1,14 @@
+# dependencies / build output
+node_modules/
+dist/
+# local secrets and state
+.env
+.env.*
+!.env.example
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+# OS / editor
+.DS_Store
+Thumbs.db

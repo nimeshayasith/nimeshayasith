@@ -1,0 +1,22 @@
+# AWS Amplify build spec (monorepo layout: the web app lives in /frontend).
+# Amplify reads this file from the repo root on every push to `main`.
+# Required once in the Amplify console (or set by Terraform):
+#   Environment variable  AMPLIFY_MONOREPO_APP_ROOT = frontend
+version: 1
+applications:
+  - appRoot: frontend
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*

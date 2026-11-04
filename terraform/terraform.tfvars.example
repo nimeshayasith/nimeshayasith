@@ -1,0 +1,23 @@
+# Copy to terraform.tfvars (git-ignored) and edit.
+
+aws_region     = "us-east-1"          # use the region of your existing Amplify app if you import it
+app_name       = "nimeshayasith@portfolio" # the existing console app (import path); any name for a brand-new app
+repository_url = "https://github.com/nimeshayasith/nimeshayasith"
+branch_name    = "main"
+app_root       = "frontend"
+
+# Proxy /api/* to the Render backend (no CORS changes needed there).
+backend_origin = "https://portfolio-6gcd.onrender.com"
+
+# Rebuild the site daily so new Medium / DEV / AWS Builder articles and YouTube videos are bundled.
+# refresh_schedule = "cron(0 3 * * ? *)"   # default; set "" to turn it off
+
+# Optional
+# domain_name             = "example.com"
+# enable_security_headers = true
+# budget_email            = "nimeshayasith@gmail.com"
+# monthly_budget_usd      = 5
+
+# NEVER put the GitHub token in this file. Export it instead:
+#   export TF_VAR_github_access_token=ghp_xxx      (bash)
+#   $env:TF_VAR_github_access_token = "ghp_xxx"    (PowerShell)
