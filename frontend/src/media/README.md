@@ -23,3 +23,10 @@ instead. Reference them with an explicit field, e.g. `image: '/my-photo.jpg'` in
 
 Gallery captions and categories: add an entry to `GALLERY_META` in `src/data/gallery.js`, keyed by
 the file name without its extension.
+
+## Project covers
+
+Every project already has a generated cover, `projects/<projectId>.jpg`: an illustrated diagram of what the project
+does (pipeline, chat, circuit, graph ...) with its stack as chips. To use a real screenshot as the cover instead,
+overwrite that file with the same name (`<projectId>.jpg`, 1200 x 675). Screenshots named `<projectId>-2.png`,
+`-3.png` ... are added to the project page as extra images and keep the generated cover.
